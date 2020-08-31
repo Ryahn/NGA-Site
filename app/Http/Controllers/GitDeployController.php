@@ -36,17 +36,24 @@ class GitDeployController extends Controller
         $localHash = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
 
         if (hash_equals($gitHash, $localHash)) {
-            $root_path = base_path();
-            $process = new Process('cd ' . $root_path . '; ./deploy.sh');
-            $messages = $process->run(function ($type, $buffer) {
-                return $buffer;
-            });
+            $workDir = '/home/ryahn/Projects/nga/site';
+            $process = Process::fromShellCommandline($workDir . '/deploy.sh');
+            $process->setWorkingDirectory($workDir);
+            $process->run();
+            $messages = $process->getOutput();
 
-            logger($messages);
+            if ($process->isSuccessful()) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success!',
+                    'data' => (array)array_filter((array)explode("\n", $messages)),
+                    'errors' => []
+                ]);
+            }
 
             return response()->json([
-                'status' => true,
-                'message' => 'Success!',
+                'status' => false,
+                'message' => 'Error!',
                 'data' => (array)array_filter((array)explode("\n", $messages)),
                 'errors' => []
             ]);
@@ -58,6 +65,5 @@ class GitDeployController extends Controller
             'data' => [],
             'errors' => []
         ]);
-
     }
 }

@@ -2,15 +2,16 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Process\Process;
 
 // Route::get('/', 'UserController@index');
 Route::get('/', function() {
-    $routes = Route::getRoutes();
-    foreach ($routes as $key => $value) {
-        if(array_key_exists('as',$value['action'])){
-           dump($value['action']['as']);
-      }
-    }
+    // $routes = Route::getRoutes();
+    $workDir = '/home/ryahn/Projects/nga/site';
+    $process = Process::fromShellCommandline($workDir . '/deploy.sh');
+    $process->setWorkingDirectory($workDir);
+    $process->run();
+    dd($process->getOutput());
 });
 
 Route::post('/deploy', 'GitDeployController@pull');
