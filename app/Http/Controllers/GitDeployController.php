@@ -36,8 +36,8 @@ class GitDeployController extends Controller
         $localHash = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
 
         if (hash_equals($gitHash, $localHash)) {
-
-            return $request->getContent();
+            $json = json_decode($request->getContent());
+            return $json->ref;
             // $workDir = env('APP_DEPLOY_DIR');
             // $process = Process::fromShellCommandline($workDir . '/deploy.sh');
             // $process->setWorkingDirectory($workDir);
