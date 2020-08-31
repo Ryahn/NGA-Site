@@ -36,34 +36,39 @@ class GitDeployController extends Controller
         $localHash = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
 
         if (hash_equals($gitHash, $localHash)) {
-            $json = json_decode($request->getContent());
+            $json = json_decode($request->payload);
+            $ref = explode('/', $json->ref);
+
+            if ($ref[2] == 'master') {
+                $workDir = env('APP_DEPLOY_DIR');
+                $process = Process::fromShellCommandline($workDir . '/deploy.sh');
+                $process->setWorkingDirectory($workDir);
+                $process->run();
+                $messages = $process->getOutput();
+
+                if ($process->isSuccessful()) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'data' => (array)array_filter((array)explode("\n", $messages)),
+                        'errors' => []
+                    ]);
+                }
+
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Error!',
+                    'data' => (array)array_filter((array)explode("\n", $messages)),
+                    'errors' => []
+                ]);
+            }
+
             return response()->json([
-                'status' => true,
-                'message' => 'Success!',
-                'data' => $json,
+                'status' => false,
+                'message' => 'Error!',
+                'data' => 'Not master branch',
                 'errors' => []
             ]);
-            // $workDir = env('APP_DEPLOY_DIR');
-            // $process = Process::fromShellCommandline($workDir . '/deploy.sh');
-            // $process->setWorkingDirectory($workDir);
-            // $process->run();
-            // $messages = $process->getOutput();
-
-            // if ($process->isSuccessful()) {
-            //     return response()->json([
-            //         'status' => true,
-            //         'message' => 'Success!',
-            //         'data' => (array)array_filter((array)explode("\n", $messages)),
-            //         'errors' => []
-            //     ]);
-            // }
-
-            // return response()->json([
-            //     'status' => false,
-            //     'message' => 'Error!',
-            //     'data' => (array)array_filter((array)explode("\n", $messages)),
-            //     'errors' => []
-            // ]);
         }
 
         return response()->json([
