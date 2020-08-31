@@ -37,7 +37,7 @@ class GitDeployController extends Controller
 
         if (hash_equals($gitHash, $localHash)) {
             $json = json_decode($request->getContent());
-            return $json->ref;
+            return $json;
             // $workDir = env('APP_DEPLOY_DIR');
             // $process = Process::fromShellCommandline($workDir . '/deploy.sh');
             // $process->setWorkingDirectory($workDir);
