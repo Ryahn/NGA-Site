@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use phpseclib\Net\SSH2;
-use phpseclib\Crypt\RSA;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\Process\Process;
 
 
 class GitDeployController extends Controller
@@ -18,7 +17,7 @@ class GitDeployController extends Controller
             !is_null($request->secret) &&
             env('AUTO_PULL_SECRET') === $request->secret
         ) {
-            return $this->processPull();
+            return $this->processPull($request);
         }
 
         return response()->json([
@@ -29,51 +28,35 @@ class GitDeployController extends Controller
         ]);
     }
 
-    private function connetSSHWithKey()
+
+    private function processPull($request)
     {
-        $privateKey = file_get_contents(base_path(env('AUTO_PULL_SSH_PRIVATE_KEY')));
+        $gitPaypload = $request->getContent();
+        $gitHash = $request->header('X-Hub-Signature');
+        $localToken = config('app.deploy_secret');
+        $localToken = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
 
-        $key = new RSA();
-        $key->loadKey($privateKey);
+        if (hash_equals($gitHash, $localHash)) {
+            $root_path = base_path();
+            $process = new Process('cd ' . $root_path . '; ./deploy.sh');
+            $messages = $process->run(function ($type, $buffer) {
+                return $buffer;
+            });
 
-        $ssh = new SSH2(env('AUTO_PULL_SERVER_IP'));
-        if (!$ssh->login(env('AUTO_PULL_SSH_USER'), $key)) {
             return response()->json([
-                'status' => false,
-                'message' => 'Connection failed with rsa key.',
-                'data' => [],
-                'errors' => $ssh->getErrors()
+                'status' => true,
+                'message' => 'Success!',
+                'data' => (array)array_filter((array)explode("\n", $messages)),
+                'errors' => []
             ]);
         }
-
-        return $this->processPull($ssh);
-    }
-
-    private function connetSSHWithPassword()
-    {
-        $ssh = new SSH2(env('AUTO_PULL_SERVER_IP'));
-        if (!$ssh->login(env('AUTO_PULL_SSH_USER'), env('AUTO_PULL_SSH_USER_PASS'))) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Connection failed with password.',
-                'data' => [],
-                'errors' => $ssh->getErrors()
-            ]);
-        }
-
-        return $this->processPull($ssh);
-    }
-
-    private function processPull($ssh)
-    {
-        $messages = $ssh->exec('cd ' . env('AUTO_PULL_DIR') . ' && git stash save --keep-index && git pull');
-        $ssh->exec('exit');
 
         return response()->json([
-            'status' => true,
-            'message' => 'Success!',
-            'data' => (array)array_filter((array)explode("\n", $messages)),
+            'status' => false,
+            'message' => 'Hash do not match',
+            'data' => [],
             'errors' => []
         ]);
+
     }
 }

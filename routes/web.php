@@ -13,6 +13,8 @@ Route::get('/', function() {
     }
 });
 
+Route::get('/deploy', 'GitDeployController@pull');
+
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'HomeController@index')->name('home');
 

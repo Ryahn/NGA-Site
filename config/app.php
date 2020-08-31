@@ -231,4 +231,7 @@ return [
 
     ],
 
+    'deploy_secret' => env('APP_DEPLOY_SECRET'),
+    'deploy_dir' => env('APP_DEPLOY_DIR'),
+
 ];
