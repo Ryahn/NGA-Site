@@ -12,8 +12,7 @@ class GitDeployController extends Controller
     public function pull(Request $request)
     {
         if (
-            !is_null(env('AUTO_PULL_SECRET')) &&
-            !is_null(env('AUTO_PULL_DIR')) &&
+            !is_null(config('app.deploy_secret')) &&
             !is_null($request->secret) &&
             env('AUTO_PULL_SECRET') === $request->secret
         ) {
