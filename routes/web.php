@@ -7,7 +7,7 @@ use Symfony\Component\Process\Process;
 // Route::get('/', 'UserController@index');
 Route::get('/', function() {
     // $routes = Route::getRoutes();
-    $workDir = '/home/ryahn/Projects/nga/site';
+    $workDir = env('APP_DEPLOY_DIR');
     $process = Process::fromShellCommandline($workDir . '/deploy.sh');
     $process->setWorkingDirectory($workDir);
     $process->run();

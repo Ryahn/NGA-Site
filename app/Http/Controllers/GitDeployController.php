@@ -36,7 +36,7 @@ class GitDeployController extends Controller
         $localHash = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
 
         if (hash_equals($gitHash, $localHash)) {
-            $workDir = '/home/ryahn/Projects/nga/site';
+            $workDir = env('APP_DEPLOY_DIR');
             $process = Process::fromShellCommandline($workDir . '/deploy.sh');
             $process->setWorkingDirectory($workDir);
             $process->run();
@@ -61,7 +61,7 @@ class GitDeployController extends Controller
 
         return response()->json([
             'status' => false,
-            'message' => 'Hashes do not match. Please check that they match.',
+            'message' => 'Hashes do not match. Please check that they match',
             'data' => [],
             'errors' => []
         ]);
