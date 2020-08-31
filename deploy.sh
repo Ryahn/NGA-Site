@@ -1,7 +1,7 @@
 #!/bin/sh
 # activate maintenance mode
 php artisan down
-php optimize:clear
+php artisan optimize:clear
 # update source code
 git pull
 # update PHP dependencies
