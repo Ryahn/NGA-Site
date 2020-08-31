@@ -43,6 +43,8 @@ class GitDeployController extends Controller
                 return $buffer;
             });
 
+            logger($messages);
+
             return response()->json([
                 'status' => true,
                 'message' => 'Success!',
