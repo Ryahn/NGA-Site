@@ -61,7 +61,7 @@ class GitDeployController extends Controller
 
         return response()->json([
             'status' => false,
-            'message' => 'Hashes do not match. Please check that they match',
+            'message' => 'Hashes do not match. Please check that they match.',
             'data' => [],
             'errors' => []
         ]);
