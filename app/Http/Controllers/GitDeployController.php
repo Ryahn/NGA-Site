@@ -36,27 +36,29 @@ class GitDeployController extends Controller
         $localHash = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
 
         if (hash_equals($gitHash, $localHash)) {
-            $workDir = env('APP_DEPLOY_DIR');
-            $process = Process::fromShellCommandline($workDir . '/deploy.sh');
-            $process->setWorkingDirectory($workDir);
-            $process->run();
-            $messages = $process->getOutput();
 
-            if ($process->isSuccessful()) {
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Success!',
-                    'data' => (array)array_filter((array)explode("\n", $messages)),
-                    'errors' => []
-                ]);
-            }
+            return $request->getContent();
+            // $workDir = env('APP_DEPLOY_DIR');
+            // $process = Process::fromShellCommandline($workDir . '/deploy.sh');
+            // $process->setWorkingDirectory($workDir);
+            // $process->run();
+            // $messages = $process->getOutput();
 
-            return response()->json([
-                'status' => false,
-                'message' => 'Error!',
-                'data' => (array)array_filter((array)explode("\n", $messages)),
-                'errors' => []
-            ]);
+            // if ($process->isSuccessful()) {
+            //     return response()->json([
+            //         'status' => true,
+            //         'message' => 'Success!',
+            //         'data' => (array)array_filter((array)explode("\n", $messages)),
+            //         'errors' => []
+            //     ]);
+            // }
+
+            // return response()->json([
+            //     'status' => false,
+            //     'message' => 'Error!',
+            //     'data' => (array)array_filter((array)explode("\n", $messages)),
+            //     'errors' => []
+            // ]);
         }
 
         return response()->json([

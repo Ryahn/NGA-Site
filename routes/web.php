@@ -4,14 +4,29 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Process\Process;
 
+use function GuzzleHttp\json_decode;
+
 // Route::get('/', 'UserController@index');
 Route::get('/', function() {
     // $routes = Route::getRoutes();
     $workDir = env('APP_DEPLOY_DIR');
+    $json = json_decode(file_get_contents($workDir . '/public/payload.json'));
+    $ref = explode('/', $json->ref);
+
+    if ($ref[2] == 'master') {
+
     $process = Process::fromShellCommandline($workDir . '/deploy.sh');
     $process->setWorkingDirectory($workDir);
     $process->run();
     dd($process->getOutput());
+    }
+
+    return response()->json([
+        'status' => false,
+        'message' => 'Not master branch.',
+        'data' => [],
+        'errors' => []
+    ]);
 });
 
 Route::post('/deploy', 'GitDeployController@pull');
