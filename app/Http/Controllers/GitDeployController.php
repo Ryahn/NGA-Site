@@ -33,7 +33,7 @@ class GitDeployController extends Controller
         $gitPaypload = $request->getContent();
         $gitHash = $request->header('X-Hub-Signature');
         $localToken = config('app.deploy_secret');
-        $localToken = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
+        $localHash = 'sha1=' . hash_hmac('sha1', $gitPaypload, $localToken, false);
 
         if (hash_equals($gitHash, $localHash)) {
             $root_path = base_path();
