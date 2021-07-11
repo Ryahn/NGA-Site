@@ -28,15 +28,18 @@ Route::get('/wargaming', [UserController::class, 'login'])->name('wargaming');
 Route::get('/openid/auth', [UserController::class, 'openid'])->name('openid');
 
 
-if(settings()->get('live')) {
-    Route::get('/apply', function () {
-        return view('welcome');
-    })->name('apply');
-} else {
-    Route::get('/apply', function () {
-        return redirect('https://navygamingamerica.enjin.com/login/do/register', 302);
-    })->name('apply');
-}
+// if(settings()->get('live')) {
+//     Route::get('/apply', function () {
+//         return view('welcome');
+//     })->name('apply');
+// } else {
+//     Route::get('/apply', function () {
+//         return redirect('https://navygamingamerica.enjin.com/login/do/register', 302);
+//     })->name('apply');
+// }
+Route::get('/apply', function () {
+    return redirect('https://navygamingamerica.enjin.com/login/do/register', 302);
+})->name('apply');
 
 Route::get('/about-us', function() {
     return view('about.us');
