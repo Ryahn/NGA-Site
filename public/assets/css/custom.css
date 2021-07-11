@@ -1,0 +1,358 @@
+/********************************
+*                               *
+*           Front CSS           *
+*                               *
+********************************/
+.btn-md .icon {
+    width: 16px;
+    height: 20px;
+}
+
+.btn .name + .icon {
+    font-size: 18px;
+}
+
+/********************************
+*                               *
+*           Admin CSS           *
+*                               *
+********************************/
+#roleData > .label {
+    margin-right: 2px;
+}
+
+.btn-user-actions {
+    width: 100%;
+}
+
+span[style*="width:auto;"] {
+    width: 100% !important;
+}
+
+.select2-container--default .select2-dropdown {
+    width: 220px !important;
+}
+
+span.select2.select2-container.select2-container--default.select2-container--below.select2-container--open.select2-container--focus {
+    width: 220px !important;
+}
+
+span.select2-selection.select2-selection--single {
+    width: 220px !important;
+    height: 30px;
+    margin-left: 5px !important;
+}
+
+.modalAdmin {
+    top: -2px;
+    display: inline;
+    position: relative;
+}
+
+button#rolesbtn {
+    display: block;
+    margin: auto;
+}
+
+.leader {
+    display: table;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    padding: 0.17rem 0.75rem !important;
+}
+
+.btn-alts {
+    background-color: #8b1bc5;
+    border-color: #8b1bc5;
+    color: white;
+}
+
+.btn-stats {
+    background-color: #20a224;
+    border-color: #20a224;
+    color: white;
+}
+
+.btn-ships {
+    background-color: #d47f00;
+    border-color: #d47f00;
+    color: white;
+}
+
+.btn-roles {
+    background-color: #01847d;
+    border-color: #01847d;
+    color: white;
+}
+
+.btn-alts:hover {
+    color: white;
+    box-shadow: 0px 9px 16px 0px rgba(24, 28, 50, 0.3) !important;
+}
+.btn-ships:hover {
+    color: white;
+    box-shadow: 0px 9px 16px 0px rgba(24, 28, 50, 0.3) !important;
+}
+.btn-roles:hover {
+    color: white;
+    box-shadow: 0px 9px 16px 0px rgba(24, 28, 50, 0.3) !important;
+}
+.btn-stats:hover {
+    color: white;
+    box-shadow: 0px 9px 16px 0px rgba(24, 28, 50, 0.3) !important;
+}
+
+.group-text {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-right: -1px;
+}
+
+.div-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+
+.div-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.div-group > .div-control {
+    position: relative;
+    -webkit-box-flex: 1;
+    width: 1%;
+    margin-bottom: 0px;
+    flex: 1 1 auto;
+}
+
+.stats-dialog {
+    min-width: 1000px;
+}
+
+.stats-row {
+    margin-bottom: 15px;
+}
+
+.col-stats {
+    padding-left: 0;
+}
+
+a.lightbox img {
+    height: 150px;
+    border: 3px solid white;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    margin: 94px 20px 20px 20px;
+}
+
+/* Styles the lightbox, removes it from sight and adds the fade-in transition */
+
+.lightbox-target {
+    position: fixed;
+    top: -100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+/* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
+
+.lightbox-target img {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 0%;
+    max-width: 0%;
+    border: 3px solid white;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+/* Styles the close link, adds the slide down transition */
+
+a.lightbox-close {
+    display: block;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    background: white;
+    color: black;
+    text-decoration: none;
+    position: absolute;
+    top: -80px;
+    right: 0;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+/* Provides part of the "X" to eliminate an image from the close link */
+
+a.lightbox-close:before {
+    content: "";
+    display: block;
+    height: 30px;
+    width: 1px;
+    background: black;
+    position: absolute;
+    left: 26px;
+    top: 10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Provides part of the "X" to eliminate an image from the close link */
+
+a.lightbox-close:after {
+    content: "";
+    display: block;
+    height: 30px;
+    width: 1px;
+    background: black;
+    position: absolute;
+    left: 26px;
+    top: 10px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+/* Uses the :target pseudo-class to perform the animations upon clicking the .lightbox-target anchor */
+
+.lightbox-target:target {
+    opacity: 1;
+    top: 0;
+    bottom: 0;
+}
+
+.lightbox-target:target img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.lightbox-target:target a.lightbox-close {
+    top: 0px;
+}
+
+.shipStats-popup {
+    width: 50em !important;
+}
+
+.shipStats-container {
+    overflow: visible !important;
+}
+
+.swal2-container .swal2-html-container {
+    overflow: visible !important;
+}
+
+.supported_wow::before {
+    background: url('/assets/images/bg/652225.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.supported_wot::before {
+    background: url('/assets/images/bg/wot-313885.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.supported_wt::before {
+    background: url('/assets/images/bg/wt-098823.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.supported_aw::before {
+    background: url('/assets/images/bg/aw-09373.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.icon.supported_logo {
+    width: 55px;
+    height: 55px;
+}
+
+.icon.supported_logo.wot {
+    width: 40px;
+    height: 50px;
+}
+
+.mpl-feature-text {
+    color: #ffffff;
+    text-shadow: 1px 2px black;
+}
+
+.mpl-feature-title.h4 {
+    text-shadow: 1px 2px black;
+}
+
+#emblem img {
+    position: relative;
+    top: -260px;
+    left: 100px;
+}
+
+#emblembt img {
+    position: relative;
+    top: -160px;
+    left: 1600px;
+}
+
+#league img {
+    height: 100px;
+}
+
+.mpl-navbar .mpl-navbar-brand {
+    width: 70px;
+}
+
+.row.justify-content-center.social-bottom {
+    margin-top: 50px;
+}
+
+.row1 {
+    width: 1000px;
+}
