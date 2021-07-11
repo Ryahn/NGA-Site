@@ -51,7 +51,7 @@
                         </a>
                     </li>
                 </ul>
-                @if(settings()->get('live'))
+                {{-- @if(settings()->get('live'))
                 <ul class="mpl-navbar-nav mpl-navbar-right">
                     @guest
                         <li class="mpl-dropdown">
@@ -96,7 +96,7 @@
                         </li>
                     @endguest
                 </ul>
-                @endif
+                @endif --}}
             </div>
         </div>
     </nav>

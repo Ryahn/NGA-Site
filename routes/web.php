@@ -51,8 +51,10 @@ Route::get('/about-leadership', function() {
 
 
 Route::prefix('forum')->group(function () {
-    // Route::get('/', [ForumController::class, 'index'])->name('forum');
-    return redirect('https://navygamingamerica.enjin.com/forum', 302);
+    Route::get('/', function() {
+        return redirect('https://navygamingamerica.enjin.com/forum', 302);
+    })->name('forum');
+    
 });
 
 Route::prefix('admin')->group(function () {
