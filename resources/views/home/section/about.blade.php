@@ -6,13 +6,7 @@
                         <h2 class="display-2" data-sr-item="demos">What We <span class="text-brand">ARE</span> About
                         </h2>
                         <p class="lead mb-60" data-sr-item="demos"
-                            style="visibility: visible;width: 650px;margin-left: -80px;">We are a crazy group who
-                            are not just strangers but are family.<br>
-                            We respect one another and joke around. All players are 18+ and TeamSpeak with mic and
-                            speakers or headset.<br>
-                            We are all active around our busy schedules, being: military (active/veteran/retired), truck
-                            driver, taxi driver, etc.</p>
-                            <p>Over 1/2 of our players are military veterans, US or foriegn.</p>
+                            style="visibility: visible;width: 650px;margin-left: -80px;">We are a militarily structured organisation with approximately half of our current membership comprised of military veterans from all services and multiple countries, but welcome all to join and become a part of our family.</p>
                     </div>
                 </div>
                 <div class="row hgap-lg vgap-lg justify-content-center">
