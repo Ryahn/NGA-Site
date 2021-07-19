@@ -4,5 +4,7 @@
 <script src="{{ asset('assets/admin/libs/simplebar/simplebar.min.js') }}"></script>
 <script src="{{ asset('assets/admin/libs/node-waves/waves.min.js') }}"></script>
 <script src="{{ asset('assets/admin/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-
+<script src="{{ asset('assets/admin/libs/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+<script src="{{ asset('assets/admin/js/custom.js') }}"></script>

@@ -190,7 +190,7 @@
                         <h2 class="display-2" data-sr-item="forum">Forum</h2>
                         <p class="lead" data-sr-item="forum">The home with discussions and flame for your lovely
                             community members</p>
-                        <a href="{{ route('forum') }}" class="btn btn-md mt-20" data-sr-item="forum">View
+                        <a href="{{ route('forum.index') }}" class="btn btn-md mt-20" data-sr-item="forum">View
                             Forum</a>
                     </div>
                     <div class="col-lg-7">

@@ -16,13 +16,13 @@ class AdminCategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()) {
+        if ($request->ajax()) {
             $data = Category::query();
             return DataTables::eloquent($data)
-            ->addIndexColumn()
-            ->editColumn('created_at', function (Category $category) {
-                return $category->created_at->diffForHumans();
-            })->editColumn('updated_at', function (Category $category) {
+                ->addIndexColumn()
+                ->editColumn('created_at', function (Category $category) {
+                    return $category->created_at->diffForHumans();
+                })->editColumn('updated_at', function (Category $category) {
                 return $category->updated_at->diffForHumans();
             })->editColumn('parent_id', function (Category $category) {
                 if ($category->parent_id) {
@@ -43,30 +43,35 @@ class AdminCategoryController extends Controller
             //         ';
             //     return $btn;
             // })
-            ->addColumn('action', function(Category $category) {
-                $btn = '
-                    <button form-action-url="' . route('forum', $category->id) . '" class="btn btn-success btn-sm" id="editCatBtn" data-toggle="modal" data-id="' . $category->id . '" data-action="editCat">Edit</button>
-                    <button form-action-url="' . route('forum', $category->id) . '" class="btn btn-success btn-sm" id="addParentBtn" data-toggle="modal" data-id="' . $category->id . '" data-action="addParent">Add Parent</button>
-                    <button form-action-url="' . route('forum', $category->id) . '" id="deleteCatBtn" class="delete btn btn-danger btn-sm">Delete</button>
+                ->addColumn('action', function (Category $category) {
+                    $btn = '
+                    <button form-action-url="' . route('forum.index', $category->id) . '" class="btn btn-success btn-sm" id="editCatBtn" data-toggle="modal" data-id="' . $category->id . '" data-action="editCat">Edit</button>
+                    <button form-action-url="' . route('forum.index', $category->id) . '" class="btn btn-success btn-sm" id="addParentBtn" data-toggle="modal" data-id="' . $category->id . '" data-action="addParent">Add Parent</button>
+                    <button form-action-url="' . route('forum.index', $category->id) . '" id="deleteCatBtn" class="delete btn btn-danger btn-sm">Delete</button>
                     ';
-                return $btn;
-            })
-            ->rawColumns(['action', 'role', 'leader', 'alts', 'stats', 'ships'])
-            ->toJson();
+                    return $btn;
+                })
+                ->rawColumns(['action', 'role', 'leader', 'alts', 'stats', 'ships'])
+                ->toJson();
         }
         return view('admin.forum.category.index');
     }
 
     public function loadModal($modal, $id, $action)
     {
-        dd("$modal, $id, $action");
-        $cat = Category::findOrFail($id);
-        if ($action == 'editCat') {
-            // return view('admin.modals.' . $modal, compact($cat));
-            dd($cat);
-        } else if ($action == 'addParent') {
-            return view('admin.modals.' . $modal, compact($cat));
+        if ($action == 'createCat') {
+            $cats = Category::all()->pluck('id', 'title')->toArray();
+            // return ['modal' => $modal, 'id' => $id, 'action' => $action, 'data' => $cats];
+            return view('admin.modals.' . $modal, compact('cats'));
         }
+        return 'nothing';
+        // $cat = Category::findOrFail($id);
+        // if ($action == 'editCat') {
+        //     // return view('admin.modals.' . $modal, compact($cat));
+        //     dd($cat);
+        // } else if ($action == 'addParent') {
+        //     return view('admin.modals.' . $modal, compact($cat));
+        // }
     }
 
     /**

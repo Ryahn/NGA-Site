@@ -15,6 +15,7 @@
     <meta name=" viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- START: Styles -->
     @include('partials.home.head')
+    @yield('css')
 </head>
 
 <body>
@@ -37,7 +38,7 @@
     <!-- /Navbar Mobile -->
     <!-- START: Content -->
     <div class="content-wrap">
-    @yield('content')
+        @yield('content')
     </div>
     <!-- END: Content -->
     <!-- START: Scripts -->
@@ -48,4 +49,5 @@
         {{ csrf_field() }}
     </form>
 </body>
+
 </html>

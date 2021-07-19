@@ -7,9 +7,13 @@
 <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}">
 
 <!-- Bootstrap Css -->
-<link href="{{ asset('assets/admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
+    type="text/css" />
 <!-- Icons Css -->
 <link href="{{ asset('assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/admin/css/all.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- App Css-->
 <link href="{{ asset('assets/admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/admin/libs/select2/css/select2.min.css') }}" id="app-style" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('assets/css/toastr.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />

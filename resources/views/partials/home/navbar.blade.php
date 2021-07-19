@@ -1,27 +1,27 @@
   <nav class="mpl-navbar-top mpl-navbar">
-        <div class="mpl-navbar-mobile-overlay"></div>
-        <div class="container mpl-navbar-container">
-            <a href="#" class="mpl-navbar-toggle"></a>
-            <div class="mpl-navbar-brand">
-                <a href="/">
-                    <img src="{{ asset('assets/images/logos/nga-emblem.png') }}" alt="">
-                </a>
-            </div>
-            <div class="mpl-navbar-content">
-                <ul class="mpl-navbar-nav">
-                    <li class="mpl-dropdown">
-                        <a href="/" class="mpl-nav-link" role="button">
-                            <span class="mpl-nav-link-name"> Home </span>
-                        </a>
+      <div class="mpl-navbar-mobile-overlay"></div>
+      <div class="container mpl-navbar-container">
+          <a href="#" class="mpl-navbar-toggle"></a>
+          <div class="mpl-navbar-brand">
+              <a href="/">
+                  <img src="{{ asset('assets/images/logos/nga-emblem.png') }}" alt="">
+              </a>
+          </div>
+          <div class="mpl-navbar-content">
+              <ul class="mpl-navbar-nav">
+                  <li class="mpl-dropdown">
+                      <a href="/" class="mpl-nav-link" role="button">
+                          <span class="mpl-nav-link-name"> Home </span>
+                      </a>
 
-                    </li>
-                    <li class="mpl-dropdown">
-                        <a href="#" class="mpl-nav-link" role="button">
-                            <span class="mpl-nav-link-name"> Matches </span>
-                        </a>
+                  </li>
+                  <li class="mpl-dropdown">
+                      <a href="#" class="mpl-nav-link" role="button">
+                          <span class="mpl-nav-link-name"> Matches </span>
+                      </a>
 
-                    </li>
-                    {{-- <li class="mpl-dropdown">
+                  </li>
+                  {{-- <li class="mpl-dropdown">
                         <a href="#" class="mpl-nav-link" role="button">
                             <span class="mpl-nav-link-name"> About </span>
                         </a>
@@ -40,18 +40,18 @@
                                 </ul>
                             </div>
                     </li> --}}
-                    <li class="mpl-dropdown">
-                        <a href="{{ route('apply') }}" class="mpl-nav-link" role="button">
-                            <span class="mpl-nav-link-name"> Join Us </span>
-                        </a>
-                    </li>
-                    <li class="mpl-dropdown">
-                        <a href="{{ route('forum') }}" class="mpl-nav-link" role="button">
-                            <span class="mpl-nav-link-name"> Forum </span>
-                        </a>
-                    </li>
-                </ul>
-                {{-- @if(settings()->get('live'))
+                  <li class="mpl-dropdown">
+                      <a href="{{ route('apply') }}" class="mpl-nav-link" role="button">
+                          <span class="mpl-nav-link-name"> Join Us </span>
+                      </a>
+                  </li>
+                  <li class="mpl-dropdown">
+                      <a href="{{ route('forum.index') }}" class="mpl-nav-link" role="button">
+                          <span class="mpl-nav-link-name"> Forum </span>
+                      </a>
+                  </li>
+              </ul>
+              {{-- @if (settings()->get('live'))
                 <ul class="mpl-navbar-nav mpl-navbar-right">
                     @guest
                         <li class="mpl-dropdown">
@@ -97,6 +97,6 @@
                     @endguest
                 </ul>
                 @endif --}}
-            </div>
-        </div>
-    </nav>
+          </div>
+      </div>
+  </nav>

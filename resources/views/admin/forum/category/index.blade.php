@@ -13,19 +13,19 @@
 
             <div class="col-sm-6">
                 <div class="float-right d-none d-md-block">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-settings mr-2"></i> Settings
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                    {{-- <div class="dropdown"> --}}
+                    <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="adminNewCat">
+                        <i class="mdi mdi-settings mr-2"></i> New Category
+                    </button>
+                    {{-- <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                    </div>
+                        </div> --}}
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -106,26 +106,25 @@
             ]
         });
 
-    $('#categoryTable').on('click', '#editCatBtn', function (e) {
-        var url = $(this).attr('form-action-url');
-        var id = $(this).attr('data-id');
-        var action = $(this).attr('data-action');
-        var base = '/admin/forum/cateogry/'+action+'/';
-        $.get(base + id + '/' + action, function(data) {
-            console.log(data);
-            $('#mainModal').modal();
-            $('#mainModal').on('shown.bs.modal', function() {
-                $('#mainModal .load_modal').html(data);
-                /*$('#editUserForm').attr('action', url);
-                $('#userRoles').select2({
-                    theme: 'bootstrap4',
-                    // multiple: true,
-                });*/
-            });
-            $('#mainModal').on('hidden.bs.modal', function(){
-                $('#mainModal .modal-body').html('');
+        $('#adminNewCat').on('click', function(e) {
+            // var url = $(this).attr('form-action-url');
+            // var id = $(this).attr('data-id');
+            // var action = $(this).attr('data-action');
+            // var base = '/admin/forum/category/createCat/1/create/';
+            $.get('/admin/forum/category/createCat/1/createCat/', function(data) {
+                $('#mainModal').modal();
+                $('#mainModal').on('shown.bs.modal', function() {
+                    $('#mainModal .load_modal').html(data);
+                    //     /*$('#editUserForm').attr('action', url);
+                    $('#parentCat').select2({
+                        theme: 'bootstrap4',
+                        // multiple: true,
+                    });
+                });
+                $('#mainModal').on('hidden.bs.modal', function() {
+                    $('#mainModal .modal-body').html('');
+                });
             });
         });
-    });
     </script>
 @endsection

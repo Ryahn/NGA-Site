@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Psy\Exception\Exception;
 
 class UserController extends Controller
 {
@@ -19,6 +20,11 @@ class UserController extends Controller
         //
     }
 
+    /**
+     * Wargaming oauth login
+     *
+     * @return object
+     */
     public function login()
     {
         if (env('APP_ENV') === 'local') {
@@ -26,27 +32,34 @@ class UserController extends Controller
             Auth::login($user);
             return redirect('/');
         }
-        $appURL = env('APP_URL');
+        $appURL       = env('APP_URL');
         $redirect_url = urlencode("$appURL/openid/auth");
-        $appID = env('APPLICATION_ID');
-        $url = "https://api.worldoftanks.com/wot/auth/login/?application_id=$appID&redirect_uri=$redirect_url";
+        $appID        = env('APPLICATION_ID');
+        $url          = "https://api.worldoftanks.com/wot/auth/login/?application_id=$appID&redirect_uri=$redirect_url";
         return redirect($url, 302);
     }
 
+    /**
+     * Return data from wargaming oauth
+     *
+     * @return void
+     */
     public function openid()
     {
-        if (request()->status !== 'ok') throw new Exception('Could not log in as user!');
+        if (request()->status !== 'ok') {
+            throw new Exception('Could not log in as user!');
+        }
 
-        $user_id = (int)request()->account_id;
+        $user_id  = (int) request()->account_id;
         $password = Hash::make(str_random(16));
 
         $data = [
-            'username' => request()->nickname,
+            'username'     => request()->nickname,
             'access_token' => request()->access_token,
-            'id' => $user_id,
-            'email' => request()->nickname . '@ngadev.test',
-            'expires_at' => request()->expires_at,
-            'password' => $password
+            'id'           => $user_id,
+            'email'        => request()->nickname . '@ngadev.test',
+            'expires_at'   => request()->expires_at,
+            'password'     => $password,
         ];
 
         $u = User::updateOrCreate(['id' => $user_id], $data);
